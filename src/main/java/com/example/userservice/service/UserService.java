@@ -1,6 +1,6 @@
-package service;
+package com.example.userservice.service;
 
-import entities.User;
+import com.example.userservice.entities.User;
 
 
 public interface UserService {

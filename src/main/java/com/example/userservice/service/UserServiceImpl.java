@@ -1,13 +1,11 @@
-package service;
+package com.example.userservice.service;
 
-import Config.UserServiceConfig;
-import Repository.UserRepository;
-import entities.User;
+import com.example.userservice.Repository.UserRepository;
+import com.example.userservice.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
