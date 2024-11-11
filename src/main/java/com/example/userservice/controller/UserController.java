@@ -1,6 +1,7 @@
 package com.example.userservice.controller;
 
 import com.example.userservice.dto.LogInDto;
+import com.example.userservice.dto.LogoutDto;
 import com.example.userservice.dto.SignUpDto;
 import com.example.userservice.dto.ValidateTokenDto;
 import com.example.userservice.entities.Token;
@@ -8,6 +9,7 @@ import com.example.userservice.entities.User;
 import com.example.userservice.exceptions.ExpiredTokenException;
 import com.example.userservice.exceptions.TokenNotFounException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +57,16 @@ public class UserController {
             return new ResponseEntity<>(HttpStatusCode.valueOf(401));
         } catch (TokenNotFounException tne){
             return new ResponseEntity<>(HttpStatusCode.valueOf(400));
+        }
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(@RequestBody LogoutDto logoutDto){
+        try{
+            this.userService.logout(logoutDto.getToken());
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 }

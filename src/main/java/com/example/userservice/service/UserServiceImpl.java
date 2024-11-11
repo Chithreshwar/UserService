@@ -85,4 +85,14 @@ public class UserServiceImpl implements UserService{
         }
         return null;
     }
+
+    @Override
+    public void logout(String tokenValue) throws Exception {
+        Optional<Token> optionalToken = this.tokenRespository.findTokenByValue(tokenValue);
+        Token token = optionalToken.orElseThrow(() -> new TokenNotFounException("Token not found"));
+        if(token.isActive()){
+            token.setActive(false);
+            this.tokenRespository.save(token);
+        }
+    }
 }

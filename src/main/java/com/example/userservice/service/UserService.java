@@ -12,4 +12,6 @@ public interface UserService {
     public Token logIn(String email, String password) throws Exception;
 
     public Token validateToken(String tokenValue) throws ExpiredTokenException, TokenNotFounException;
+
+    public void logout(String token) throws Exception;
 }
